@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer", "TestMusicAppServer\TestMusicAppServer.csproj", "{842629FD-9A6E-4B2E-8828-4E0424284021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Api", "TestMusicAppServer.Api\TestMusicAppServer.Api.csproj", "{842629FD-9A6E-4B2E-8828-4E0424284021}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Shared.Domain", "TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj", "{66602CD0-022F-4854-82C3-7809B9858285}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Shared.Infrastructure", "TestMusicAppServer.Shared.Infrastructure\TestMusicAppServer.Shared.Infrastructure.csproj", "{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8D69A631-FD46-403C-A466-D68CF348B453}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{4066C0D3-8807-466B-8AA0-2E1AA1F27102}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.User.Domain", "TestMusicAppServer.User.Domain\TestMusicAppServer.User.Domain.csproj", "{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.User.Infrastructure", "TestMusicAppServer.User.Infrastructure\TestMusicAppServer.User.Infrastructure.csproj", "{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Resources", "TestMusicAppServer.Resources\TestMusicAppServer.Resources.csproj", "{1847ABEE-3A70-4A20-91AE-50859DA9FF32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D51C02C8-3940-45A0-9752-ED967B626ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer.Common", "TestMusicAppServer.Common\TestMusicAppServer.Common.csproj", "{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +33,41 @@ Global
 		{842629FD-9A6E-4B2E-8828-4E0424284021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{842629FD-9A6E-4B2E-8828-4E0424284021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{842629FD-9A6E-4B2E-8828-4E0424284021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66602CD0-022F-4854-82C3-7809B9858285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66602CD0-022F-4854-82C3-7809B9858285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66602CD0-022F-4854-82C3-7809B9858285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66602CD0-022F-4854-82C3-7809B9858285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1847ABEE-3A70-4A20-91AE-50859DA9FF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1847ABEE-3A70-4A20-91AE-50859DA9FF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1847ABEE-3A70-4A20-91AE-50859DA9FF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1847ABEE-3A70-4A20-91AE-50859DA9FF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66602CD0-022F-4854-82C3-7809B9858285} = {8D69A631-FD46-403C-A466-D68CF348B453}
+		{C8D40BD4-C58A-4288-AD10-B4ECCE2E5FE2} = {8D69A631-FD46-403C-A466-D68CF348B453}
+		{B32F955C-7CE2-43B0-A6C8-E57262A1EA0A} = {4066C0D3-8807-466B-8AA0-2E1AA1F27102}
+		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52} = {4066C0D3-8807-466B-8AA0-2E1AA1F27102}
+		{1847ABEE-3A70-4A20-91AE-50859DA9FF32} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
+		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7144327-EFC5-494A-8BB7-080E9F5837C3}
