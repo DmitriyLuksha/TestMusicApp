@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MediatR">
-      <HintPath>C:\Users\User\.nuget\packages\mediatr\7.0.0\lib\netstandard2.0\MediatR.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
   </ItemGroup>
 
 </Project>
