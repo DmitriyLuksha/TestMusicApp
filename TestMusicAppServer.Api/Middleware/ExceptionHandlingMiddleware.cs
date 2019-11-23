@@ -29,11 +29,13 @@ namespace TestMusicAppServer.Api.Middleware
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex, env.IsDevelopment());
+                // var showExceptionObject = env.IsDevelopment();
+                var showExceptionObject = true;
+                await HandleExceptionAsync(context, ex, showExceptionObject);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception, bool isDev)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception, bool showExceptionObject)
         {
             var errorMessage = "";
             HttpStatusCode statusCode;
@@ -53,7 +55,7 @@ namespace TestMusicAppServer.Api.Middleware
                 {
                     Success = false,
                     ErrorMessage = errorMessage,
-                    Exception = isDev ? exception : null
+                    Exception = showExceptionObject ? exception : null
                 },
                 new JsonSerializerSettings
                 {
