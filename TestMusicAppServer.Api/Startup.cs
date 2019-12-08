@@ -73,6 +73,11 @@ namespace TestMusicAppServer.Api
             {
                 options.InvalidModelStateResponseFactory = InvalidModelStateHandler.FormatResponse;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
