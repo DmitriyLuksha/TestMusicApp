@@ -52,6 +52,9 @@ namespace TestMusicAppServer.Api
                     {
                         OnRedirectToLogin = UserNotAuthenticatedHandler.Handle
                     };
+
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
                 });
 
             services.AddMvc()
@@ -72,11 +75,6 @@ namespace TestMusicAppServer.Api
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = InvalidModelStateHandler.FormatResponse;
-            });
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
             });
         }
 
