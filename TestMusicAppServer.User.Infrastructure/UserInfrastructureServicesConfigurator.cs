@@ -7,9 +7,9 @@ using TestMusicAppServer.User.Infrastructure.Repositories;
 
 namespace TestMusicAppServer.User.Infrastructure
 {
-    public static class InfrastructureDependenciesResolver
+    public static class UserInfrastructureServicesConfigurator
     {
-        public static void AddUserInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureUserInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = configuration.GetConnectionString("TestMusicAppDb");
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));

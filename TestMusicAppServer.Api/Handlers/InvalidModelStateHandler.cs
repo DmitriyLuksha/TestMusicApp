@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using TestMusicAppServer.Api.ApiResults;
 
-namespace TestMusicAppServer.Api.Helpers
+namespace TestMusicAppServer.Api.Handlers
 {
     public static class InvalidModelStateHandler
     {

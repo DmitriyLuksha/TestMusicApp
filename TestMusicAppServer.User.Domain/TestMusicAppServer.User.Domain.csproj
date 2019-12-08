@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TestMusicAppServer.Authentication\TestMusicAppServer.Authentication.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
   </ItemGroup>
 

@@ -1,21 +1,24 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using TestMusicAppServer.Authentication.Contexts;
 using TestMusicAppServer.User.Domain.Commands;
 using TestMusicAppServer.User.Domain.Queries;
 
 namespace TestMusicAppServer.Api.Controllers
 {
-    [Route("api/users")]
-    public class UserController : BaseApiController
+    [Route("api/account")]
+    public class AccountController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
+        public AccountController(IMediator mediator)
         {
             this._mediator = mediator;
         }
         
+        [AllowAnonymous]
         [HttpGet]
         [Route("isUsernameUnique")]
         public async Task<IActionResult> IsUsernameUnique([FromQuery] IsUsernameUniqueQuery query)
@@ -24,6 +27,7 @@ namespace TestMusicAppServer.Api.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("isEmailUnique")]
         public async Task<IActionResult> IsEmailUnique([FromQuery] IsEmailUniqueQuery query)
@@ -32,11 +36,29 @@ namespace TestMusicAppServer.Api.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
         {
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("signin")]
+        public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
+        {
+            command.Context = new AuthenticationContext(HttpContext);
+
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [Route("test")]
+        public string Test()
+        {
+            return "test";
         }
     }
 }

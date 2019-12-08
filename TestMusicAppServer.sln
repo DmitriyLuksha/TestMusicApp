@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Resource
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{D51C02C8-3940-45A0-9752-ED967B626ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer.Common", "TestMusicAppServer.Common\TestMusicAppServer.Common.csproj", "{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Common", "TestMusicAppServer.Common\TestMusicAppServer.Common.csproj", "{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer.Authentication", "TestMusicAppServer.Authentication\TestMusicAppServer.Authentication.csproj", "{1FED8E40-B384-46F8-82D1-2BF3145D5863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FED8E40-B384-46F8-82D1-2BF3145D5863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FED8E40-B384-46F8-82D1-2BF3145D5863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FED8E40-B384-46F8-82D1-2BF3145D5863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FED8E40-B384-46F8-82D1-2BF3145D5863}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{9DF601EC-E01F-4FD5-BA09-BB6C8B211E52} = {4066C0D3-8807-466B-8AA0-2E1AA1F27102}
 		{1847ABEE-3A70-4A20-91AE-50859DA9FF32} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
 		{C3FDE16A-E02A-4CDA-A3C6-5D00B016A199} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
+		{1FED8E40-B384-46F8-82D1-2BF3145D5863} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7144327-EFC5-494A-8BB7-080E9F5837C3}

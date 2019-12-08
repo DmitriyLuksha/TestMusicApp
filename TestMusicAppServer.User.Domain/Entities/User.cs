@@ -6,6 +6,8 @@ namespace TestMusicAppServer.User.Domain.Entities
 {
     public class User : BaseEntity
     {
+        private User() { }
+
         public User(Guid id,
             string email,
             string username,

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestMusicAppServer.Api.ApiResults;
 
 namespace TestMusicAppServer.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     public class BaseApiController : ControllerBase
     {
         [NonAction]

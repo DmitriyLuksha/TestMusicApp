@@ -1,6 +1,6 @@
 ﻿namespace TestMusicAppServer.Shared.Domain.Dto
 {
-    public abstract class DtoBase
+    public abstract class BaseDto
     {
     }
 }

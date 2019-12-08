@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using TestMusicAppServer.Api.DependencyResolvers;
 using TestMusicAppServer.Api.Extensions;
-using TestMusicAppServer.Api.Helpers;
+using TestMusicAppServer.Api.Handlers;
+using TestMusicAppServer.Authentication;
 using TestMusicAppServer.User.Infrastructure;
 
 namespace TestMusicAppServer.Api
@@ -38,7 +42,17 @@ namespace TestMusicAppServer.Api
             });
 
             services.AddMediatRForSolution("TestMusicAppServer.");
-            services.AddUserInfrastructureServices(Configuration);
+            services.ConfigureUserInfrastructureServices(Configuration);
+            services.ConfigureAuthenticationServices();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Events = new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = UserNotAuthenticatedHandler.Handle
+                    };
+                });
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -51,9 +65,9 @@ namespace TestMusicAppServer.Api
             {
                 builder.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             }));
-
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -79,6 +93,8 @@ namespace TestMusicAppServer.Api
             app.UseCookiePolicy();
 
             app.UseExceptionHandlingMiddleware();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

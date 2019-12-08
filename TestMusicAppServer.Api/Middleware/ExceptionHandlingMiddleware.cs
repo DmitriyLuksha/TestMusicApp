@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Threading.Tasks;
 using TestMusicAppServer.Api.ApiResults;
-using TestMusicAppServer.Common.Constants;
+using TestMusicAppServer.Api.Helpers;
 using TestMusicAppServer.Resources;
 
 namespace TestMusicAppServer.Api.Middleware
@@ -35,7 +33,7 @@ namespace TestMusicAppServer.Api.Middleware
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception, bool showExceptionObject)
+        private Task HandleExceptionAsync(HttpContext context, Exception exception, bool showExceptionObject)
         {
             var errorMessage = "";
             HttpStatusCode statusCode;
@@ -51,22 +49,14 @@ namespace TestMusicAppServer.Api.Middleware
                 statusCode = HttpStatusCode.InternalServerError;
             }
 
-            var result = JsonConvert.SerializeObject(new ApiResult
-                {
-                    Success = false,
-                    ErrorMessage = errorMessage,
-                    Exception = showExceptionObject ? exception : null
-                },
-                new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            
-            context.Response.StatusCode = (int)statusCode;
-            context.Response.ContentType = MimeTypes.Application.Json;
+            var result = new ApiResult
+            {
+                Success = false,
+                ErrorMessage = errorMessage,
+                Exception = showExceptionObject ? exception : null
+            };
 
-            await context.Response.WriteAsync(result);
+            return context.Response.FormatResult(result, statusCode);
         }
     }
 }
