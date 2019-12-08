@@ -6,7 +6,6 @@ using TestMusicAppServer.Shared.Domain.CommandHandlers;
 using TestMusicAppServer.Shared.Domain.Contracts;
 using TestMusicAppServer.User.Domain.Commands;
 using TestMusicAppServer.User.Domain.Helpers;
-using AuthenticationService = Microsoft.AspNetCore.Authentication.AuthenticationService;
 
 namespace TestMusicAppServer.User.Domain.CommandHandlers
 {
@@ -38,7 +37,7 @@ namespace TestMusicAppServer.User.Domain.CommandHandlers
                 throw new ValidationException("Invalid password");
             }
 
-            await _accountService.Authenticate(request.Context, user.Id, user.Username, user.Email);
+            await _accountService.SignIn(request.Context, user.Id, user.Username, user.Email);
         }
     }
 }

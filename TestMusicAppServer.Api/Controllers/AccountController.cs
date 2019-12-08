@@ -55,10 +55,18 @@ namespace TestMusicAppServer.Api.Controllers
             return Ok();
         }
 
-        [Route("test")]
-        public string Test()
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("signout")]
+        public async Task<IActionResult> SignOut()
         {
-            return "test";
+            var command = new SignOutCommand
+            {
+                Context = new AuthenticationContext(HttpContext)
+            };
+
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }

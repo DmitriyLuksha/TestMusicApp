@@ -10,7 +10,7 @@ namespace TestMusicAppServer.Authentication.Services
 {
     public class AccountService : IAccountService
     {
-        public Task Authenticate(AuthenticationContext context, Guid id, string username, string email)
+        public Task SignIn(AuthenticationContext context, Guid id, string username, string email)
         {
             var claims = new List<Claim>
             {
@@ -24,6 +24,11 @@ namespace TestMusicAppServer.Authentication.Services
 
             return context.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(identity));
+        }
+
+        public Task SignOut(AuthenticationContext context)
+        {
+            return context.HttpContext.SignOutAsync();
         }
     }
 }

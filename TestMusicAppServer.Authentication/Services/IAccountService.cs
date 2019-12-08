@@ -7,6 +7,8 @@ namespace TestMusicAppServer.Authentication.Services
 {
     public interface IAccountService : IService
     {
-        Task Authenticate(AuthenticationContext context, Guid id, string username, string email);
+        Task SignIn(AuthenticationContext context, Guid id, string username, string email);
+
+        Task SignOut(AuthenticationContext context);
     }
 }
