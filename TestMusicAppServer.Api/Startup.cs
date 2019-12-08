@@ -54,7 +54,6 @@ namespace TestMusicAppServer.Api
                     };
 
                     options.Cookie.SameSite = SameSiteMode.None;
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
                 });
 
             services.AddMvc()
