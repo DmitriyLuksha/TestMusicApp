@@ -18,14 +18,6 @@ namespace TestMusicAppServer.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
-        {
-            await _mediator.Send(command);
-            return Ok();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
         [Route("signin")]
         public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
         {

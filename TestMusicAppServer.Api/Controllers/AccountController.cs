@@ -16,7 +16,15 @@ namespace TestMusicAppServer.Api.Controllers
         {
             this._mediator = mediator;
         }
-        
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
         [AllowAnonymous]
         [HttpGet]
         [Route("isUsernameUnique")]
