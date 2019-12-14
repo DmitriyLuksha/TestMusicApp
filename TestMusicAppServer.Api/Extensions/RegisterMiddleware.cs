@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using TestMusicAppServer.Api.Middleware;
 
 namespace TestMusicAppServer.Api.Extensions

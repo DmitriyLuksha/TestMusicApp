@@ -1,20 +1,31 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using TestMusicAppServer.Authentication.Contexts;
+using TestMusicAppServer.Common.Exceptions;
 
 namespace TestMusicAppServer.Authentication.Services
 {
     public class AccountService : IAccountService
     {
-        public Task SignIn(AuthenticationContext context, Guid id, string username, string email)
+        private readonly IHttpContextAccessor _context;
+
+        public AccountService(IHttpContextAccessor context)
+        {
+            _context = context;
+        }
+
+        public Task SignIn(Guid id, string username, string email)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, username)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
+                new Claim(ClaimTypes.NameIdentifier, id.ToString()),
+                new Claim(ClaimTypes.Email, email)
             };
 
             var identity = new ClaimsIdentity(claims, 
@@ -22,13 +33,32 @@ namespace TestMusicAppServer.Authentication.Services
                 ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
 
-            return context.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+            return _context.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(identity));
         }
 
-        public Task SignOut(AuthenticationContext context)
+        public Task SignOut()
         {
-            return context.HttpContext.SignOutAsync();
+            return _context.HttpContext.SignOutAsync();
+        }
+        
+        public Guid UserId => Guid.Parse(GetClaimValue(ClaimTypes.NameIdentifier));
+
+        public string UserName => GetClaimValue(ClaimsIdentity.DefaultNameClaimType);
+
+        public string UserEmail => GetClaimValue(ClaimTypes.Email);
+
+        private string GetClaimValue(string claimType)
+        {
+            var claim = _context.HttpContext.User.Claims
+                .FirstOrDefault(c => c.Type == claimType);
+
+            if (claim == null)
+            {
+                throw new UserNotLoggedInException();
+            }
+
+            return claim.Value;
         }
     }
 }

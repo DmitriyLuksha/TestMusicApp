@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using TestMusicAppServer.Authentication.Services;
 
 namespace TestMusicAppServer.Authentication
@@ -8,6 +9,7 @@ namespace TestMusicAppServer.Authentication
         public static void ConfigureAuthenticationServices(this IServiceCollection services)
         {
             services.AddScoped(typeof(IAccountService), typeof(AccountService));
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace TestMusicAppServer.User.Domain.CommandHandlers
                 throw new ValidationException("Invalid password");
             }
 
-            await _accountService.SignIn(request.Context, user.Id, user.Username, user.Email);
+            await _accountService.SignIn(user.Id, user.Username, user.Email);
         }
     }
 }

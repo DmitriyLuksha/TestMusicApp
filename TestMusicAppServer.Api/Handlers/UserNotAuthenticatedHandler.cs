@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net;
 using System.Threading.Tasks;
 using TestMusicAppServer.Api.ApiResults;
-using TestMusicAppServer.Api.Helpers;
+using TestMusicAppServer.Api.Extensions;
 
 namespace TestMusicAppServer.Api.Handlers
 {

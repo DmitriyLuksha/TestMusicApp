@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Threading.Tasks;
 using TestMusicAppServer.Api.ApiResults;
-using TestMusicAppServer.Api.Helpers;
+using TestMusicAppServer.Api.Extensions;
 using TestMusicAppServer.Resources;
 
 namespace TestMusicAppServer.Api.Middleware

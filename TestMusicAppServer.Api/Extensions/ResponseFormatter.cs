@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 using TestMusicAppServer.Api.ApiResults;
 using TestMusicAppServer.Common.Constants;
 
-namespace TestMusicAppServer.Api.Helpers
+namespace TestMusicAppServer.Api.Extensions
 {
     public static class ResponseFormatter
     {

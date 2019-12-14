@@ -17,7 +17,7 @@ namespace TestMusicAppServer.User.Domain.CommandHandlers
 
         protected override Task Handle(SignOutCommand command, CancellationToken cancellationToken)
         {
-            return _accountService.SignOut(command.Context);
+            return _accountService.SignOut();
         }
     }
 }

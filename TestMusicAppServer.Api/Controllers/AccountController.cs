@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TestMusicAppServer.Authentication.Contexts;
 using TestMusicAppServer.User.Domain.Commands;
 using TestMusicAppServer.User.Domain.Queries;
 
@@ -36,37 +35,14 @@ namespace TestMusicAppServer.Api.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
+        [HttpGet]
+        [Route("details")]
+        public async Task<IActionResult> GetAccountDetails()
         {
-            await _mediator.Send(command);
-            return Ok();
-        }
+            var query = new GetAccountDetailsQuery();
+            var details = await _mediator.Send(query);
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("signin")]
-        public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
-        {
-            command.Context = new AuthenticationContext(HttpContext);
-
-            await _mediator.Send(command);
-            return Ok();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("signout")]
-        public async Task<IActionResult> SignOut()
-        {
-            var command = new SignOutCommand
-            {
-                Context = new AuthenticationContext(HttpContext)
-            };
-
-            await _mediator.Send(command);
-            return Ok();
+            return Ok(details);
         }
     }
 }
