@@ -10,7 +10,7 @@ namespace TestMusicAppServer.Api.Extensions
 {
     public static class ResponseFormatter
     {
-        public static Task FormatResult(this HttpResponse response, ApiResult apiResult, HttpStatusCode code)
+        public static Task FormatResultAsync(this HttpResponse response, ApiResult apiResult, HttpStatusCode code)
         {
             response.StatusCode = (int)code;
             response.ContentType = MimeTypes.Application.Json;

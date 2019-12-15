@@ -56,7 +56,7 @@ namespace TestMusicAppServer.Api.Middleware
                 Exception = showExceptionObject ? exception : null
             };
 
-            return context.Response.FormatResult(result, statusCode);
+            return context.Response.FormatResultAsync(result, statusCode);
         }
     }
 }

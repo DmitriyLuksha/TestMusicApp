@@ -1,0 +1,4 @@
+Set applicationUrl to https://localhost:44349/
+Add environment variable ConnectionStrings__TestMusicAppDb
+
+TODO create deploy script

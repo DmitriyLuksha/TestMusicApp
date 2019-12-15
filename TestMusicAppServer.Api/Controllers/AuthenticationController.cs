@@ -6,7 +6,7 @@ using TestMusicAppServer.User.Domain.Commands;
 
 namespace TestMusicAppServer.Api.Controllers
 {
-    [Route("api/account")]
+    [Route("api/authentication")]
     public class AuthenticationController : BaseApiController
     {
         private readonly IMediator _mediator;

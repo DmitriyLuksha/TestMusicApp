@@ -17,7 +17,7 @@ namespace TestMusicAppServer.Api.Handlers
                 ErrorMessage = "User is not authenticated"
             };
 
-            return context.Response.FormatResult(result, HttpStatusCode.Unauthorized);
+            return context.Response.FormatResultAsync(result, HttpStatusCode.Unauthorized);
         }
     }
 }

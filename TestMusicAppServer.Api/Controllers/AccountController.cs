@@ -7,7 +7,7 @@ using TestMusicAppServer.User.Domain.Queries;
 
 namespace TestMusicAppServer.Api.Controllers
 {
-    [Route("api/account")]
+    [Route("api/accounts")]
     public class AccountController : BaseApiController
     {
         private readonly IMediator _mediator;

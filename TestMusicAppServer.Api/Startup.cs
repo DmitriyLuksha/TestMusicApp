@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +10,8 @@ using TestMusicAppServer.Api.DependencyResolvers;
 using TestMusicAppServer.Api.Extensions;
 using TestMusicAppServer.Api.Handlers;
 using TestMusicAppServer.Authentication;
+using TestMusicAppServer.Playlist.Domain;
+using TestMusicAppServer.Playlist.Infrastructure;
 using TestMusicAppServer.User.Infrastructure;
 
 namespace TestMusicAppServer.Api
@@ -43,8 +43,12 @@ namespace TestMusicAppServer.Api
             });
 
             services.AddMediatRForSolution("TestMusicAppServer.");
-            services.ConfigureUserInfrastructureServices(Configuration);
+
+            // TODO Implement autoresolving dependencies for the base classes and interfaces like IService
             services.ConfigureAuthenticationServices();
+            services.ConfigureUserInfrastructureServices(Configuration);
+            services.ConfigurePlaylistInfrastructureServices(Configuration);
+            services.ConfigurePlaylistDomainServices(Configuration);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

@@ -6,11 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestMusicAppServer.Authentication\TestMusicAppServer.Authentication.csproj" />
+    <ProjectReference Include="..\TestMusicAppServer.Common\TestMusicAppServer.Common.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
   </ItemGroup>
 
