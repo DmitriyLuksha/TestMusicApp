@@ -6,6 +6,8 @@ namespace TestMusicAppServer.Playlist.Domain.Commands
 {
     public class AddPlaylistCommand : BaseCommand
     {
+        public Guid PlaylistId { get; set; }
+
         [Required]
         public Guid UserId { get; set; }
 

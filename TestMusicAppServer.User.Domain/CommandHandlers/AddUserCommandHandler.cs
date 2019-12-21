@@ -18,7 +18,7 @@ namespace TestMusicAppServer.User.Domain.CommandHandlers
 
         protected override async Task Handle(AddUserCommand command, CancellationToken cancellationToken)
         {
-            var user = new Entities.User(Guid.NewGuid(),
+            var user = new Entities.User(command.UserId,
                 command.Email,
                 command.Username,
                 command.Password);

@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using TestMusicAppServer.Shared.Domain.Commands;
 
 namespace TestMusicAppServer.User.Domain.Commands
 {
     public class AddUserCommand : BaseCommand
     {
+        public Guid UserId { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }

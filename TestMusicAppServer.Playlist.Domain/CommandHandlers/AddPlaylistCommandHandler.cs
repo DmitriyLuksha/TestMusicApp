@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using TestMusicAppServer.Playlist.Domain.Commands;
 using TestMusicAppServer.Shared.Domain.CommandHandlers;
@@ -18,7 +17,7 @@ namespace TestMusicAppServer.Playlist.Domain.CommandHandlers
         
         protected override async Task Handle(AddPlaylistCommand command, CancellationToken cancellationToken)
         {
-            var playlist = new Entities.Playlist(new Guid(), command.Name, command.UserId);
+            var playlist = new Entities.Playlist(command.PlaylistId, command.Name, command.UserId);
 
             await _repository.CreateAsync(playlist);
         }

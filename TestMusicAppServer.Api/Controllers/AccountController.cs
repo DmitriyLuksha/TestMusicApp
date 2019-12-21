@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace TestMusicAppServer.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] AddUserCommand command)
         {
+            command.UserId = Guid.NewGuid();
+
             await _mediator.Send(command);
             return Ok();
         }

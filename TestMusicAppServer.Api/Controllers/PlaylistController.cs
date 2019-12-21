@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using TestMusicAppServer.Authentication.Services;
 using TestMusicAppServer.Playlist.Domain.Commands;
 using TestMusicAppServer.Playlist.Domain.Queries;
@@ -22,6 +23,7 @@ namespace TestMusicAppServer.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePlaylist([FromBody] AddPlaylistCommand command)
         {
+            command.PlaylistId = Guid.NewGuid();
             command.UserId = _accountService.UserId;
 
             await _mediator.Send(command);
