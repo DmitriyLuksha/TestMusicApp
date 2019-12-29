@@ -4,7 +4,7 @@ using TestMusicAppServer.Shared.Domain.Commands;
 
 namespace TestMusicAppServer.Playlist.Domain.Commands
 {
-    public class AddPlaylistCommand : BaseCommand
+    public class AddPlaylistCommand : ICommand
     {
         public Guid PlaylistId { get; set; }
 

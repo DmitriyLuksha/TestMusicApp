@@ -10,8 +10,10 @@ using TestMusicAppServer.Api.DependencyResolvers;
 using TestMusicAppServer.Api.Extensions;
 using TestMusicAppServer.Api.Handlers;
 using TestMusicAppServer.Authentication;
+using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Playlist.Domain;
 using TestMusicAppServer.Playlist.Infrastructure;
+using TestMusicAppServer.Track.Infrastructure;
 using TestMusicAppServer.User.Infrastructure;
 
 namespace TestMusicAppServer.Api
@@ -44,11 +46,15 @@ namespace TestMusicAppServer.Api
 
             services.AddMediatRForSolution("TestMusicAppServer.");
 
+            services.Configure<ConnectionStringsConfig>(Configuration.GetSection("ConnectionStrings"));
+            services.Configure<ServiceBusConfig>(Configuration.GetSection("ServiceBus"));
+
             // TODO Implement autoresolving dependencies for the base classes and interfaces like IService
             services.ConfigureAuthenticationServices();
             services.ConfigureUserInfrastructureServices(Configuration);
             services.ConfigurePlaylistInfrastructureServices(Configuration);
             services.ConfigurePlaylistDomainServices(Configuration);
+            services.ConfigureTrackInfrastructureServices();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

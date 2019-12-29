@@ -2,7 +2,7 @@
 
 namespace TestMusicAppServer.Shared.Domain.Commands
 {
-    public abstract class BaseCommand : IRequest
+    public interface ICommand : IRequest
     {
     }
 }

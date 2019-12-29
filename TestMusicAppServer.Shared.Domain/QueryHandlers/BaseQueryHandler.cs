@@ -6,7 +6,7 @@ using TestMusicAppServer.Shared.Domain.Queries;
 namespace TestMusicAppServer.Shared.Domain.QueryHandlers
 {
     public abstract class BaseQueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
-        where TQuery: BaseQuery<TResponse>
+        where TQuery: IQuery<TResponse>
     {
         public abstract Task<TResponse> Handle(TQuery query, CancellationToken cancellationToken);
     }

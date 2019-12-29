@@ -2,7 +2,7 @@
 
 namespace TestMusicAppServer.User.Domain.Commands
 {
-    public class SignInCommand : BaseCommand
+    public class SignInCommand : ICommand
     {
         public string Username { get; set; }
 

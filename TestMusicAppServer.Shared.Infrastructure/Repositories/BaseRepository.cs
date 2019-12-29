@@ -21,7 +21,7 @@ namespace TestMusicAppServer.Shared.Infrastructure.Repositories
 
         protected DbSet<T> Set { get; }
         
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await Set.FindAsync(id);
         }
@@ -50,7 +50,7 @@ namespace TestMusicAppServer.Shared.Infrastructure.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(int id)
+        public virtual async Task DeleteAsync(Guid id)
         {
             var value = await Set.FindAsync(id);
 

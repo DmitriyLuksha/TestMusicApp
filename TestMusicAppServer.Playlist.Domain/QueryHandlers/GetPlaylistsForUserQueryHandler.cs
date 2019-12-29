@@ -24,7 +24,8 @@ namespace TestMusicAppServer.Playlist.Domain.QueryHandlers
         private readonly IRepository<Entities.Playlist> _repository;
         private readonly IPlaylistMapper _playlistMapper;
 
-        public override async Task<List<PlaylistDto>> Handle(GetPlaylistsForUserQuery query, CancellationToken cancellationToken)
+        public override async Task<List<PlaylistDto>> Handle(GetPlaylistsForUserQuery query,
+            CancellationToken cancellationToken)
         {
             var playlists = await _repository.FindListAsync(pl => pl.UserId == query.UserId);
 

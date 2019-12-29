@@ -3,7 +3,7 @@ using TestMusicAppServer.Shared.Domain.Queries;
 
 namespace TestMusicAppServer.User.Domain.Queries
 {
-    public class IsUsernameUniqueQuery : BaseQuery<bool>
+    public class IsUsernameUniqueQuery : IQuery<bool>
     {
         [Required]
         public string Username { get; set; }

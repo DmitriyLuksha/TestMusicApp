@@ -4,7 +4,7 @@ using TestMusicAppServer.Shared.Domain.Commands;
 
 namespace TestMusicAppServer.User.Domain.Commands
 {
-    public class AddUserCommand : BaseCommand
+    public class AddUserCommand : ICommand
     {
         public Guid UserId { get; set; }
 

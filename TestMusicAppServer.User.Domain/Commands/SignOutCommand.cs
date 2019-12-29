@@ -2,7 +2,7 @@
 
 namespace TestMusicAppServer.User.Domain.Commands
 {
-    public class SignOutCommand : BaseCommand
+    public class SignOutCommand : ICommand
     {
     }
 }

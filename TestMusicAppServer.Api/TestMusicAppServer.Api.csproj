@@ -30,6 +30,8 @@
     <ProjectReference Include="..\TestMusicAppServer.Resources\TestMusicAppServer.Resources.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Shared.Infrastructure\TestMusicAppServer.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\TestMusicAppServer.Track.Domain\TestMusicAppServer.Track.Domain.csproj" />
+    <ProjectReference Include="..\TestMusicAppServer.Track.Infrastructure\TestMusicAppServer.Track.Infrastructure.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.User.Domain\TestMusicAppServer.User.Domain.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.User.Infrastructure\TestMusicAppServer.User.Infrastructure.csproj" />
   </ItemGroup>

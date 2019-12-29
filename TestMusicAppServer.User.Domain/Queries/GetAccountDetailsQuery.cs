@@ -3,7 +3,7 @@ using TestMusicAppServer.User.Domain.Dto;
 
 namespace TestMusicAppServer.User.Domain.Queries
 {
-    public class GetAccountDetailsQuery : BaseQuery<AccountDetailsDto>
+    public class GetAccountDetailsQuery : IQuery<AccountDetailsDto>
     {
     }
 }

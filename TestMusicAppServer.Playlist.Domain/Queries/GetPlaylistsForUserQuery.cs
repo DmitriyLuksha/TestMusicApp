@@ -5,7 +5,7 @@ using TestMusicAppServer.Shared.Domain.Queries;
 
 namespace TestMusicAppServer.Playlist.Domain.Queries
 {
-    public class GetPlaylistsForUserQuery : BaseQuery<List<PlaylistDto>>
+    public class GetPlaylistsForUserQuery : IQuery<List<PlaylistDto>>
     {
         public Guid UserId { get; set; }
     }

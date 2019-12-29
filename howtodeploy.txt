@@ -1,4 +1,6 @@
 Set applicationUrl to https://localhost:44349/
 Add environment variable ConnectionStrings__TestMusicAppDb
+Add environment variable ConnectionStrings__TestMusicAppServiceBus
+Add environment variable ServiceBus__AudioConversionQueueName
 
 TODO create deploy script

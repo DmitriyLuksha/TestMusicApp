@@ -2,7 +2,7 @@
 
 namespace TestMusicAppServer.Shared.Domain.Queries
 {
-    public abstract class BaseQuery<T> : IRequest<T>
+    public interface IQuery<T> : IRequest<T>
     {
     }
 }

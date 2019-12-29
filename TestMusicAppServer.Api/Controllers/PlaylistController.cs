@@ -41,12 +41,5 @@ namespace TestMusicAppServer.Api.Controllers
             var playlists = await _mediator.Send(query);
             return Ok(playlists);
         }
-
-        [HttpPost]
-        [Route("{playlistId}/uploadFile")]
-        public async Task<IActionResult> UploadFile()
-        {
-            return Ok("it works");
-        }
     }
 }

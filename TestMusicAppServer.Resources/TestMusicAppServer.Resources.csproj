@@ -9,6 +9,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="InvalidityReasons.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InvalidityReasons.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResExceptionMessage - Copy.Designer.cs">
+      <DependentUpon>ResExceptionMessage.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ResExceptionMessage - Copy.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResExceptionMessage.resx</DependentUpon>
+    </Compile>
     <Compile Update="ResExceptionMessage.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -17,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="InvalidityReasons.resx">
+      <LastGenOutput>InvalidityReasons.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ResExceptionMessage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResExceptionMessage.Designer.cs</LastGenOutput>
