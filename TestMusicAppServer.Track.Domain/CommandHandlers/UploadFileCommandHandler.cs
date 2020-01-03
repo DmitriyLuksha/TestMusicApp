@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -6,21 +7,25 @@ using TestMusicAppServer.Playlist.Definitions.ValidationRequests;
 using TestMusicAppServer.Shared.Domain.CommandHandlers;
 using TestMusicAppServer.Track.Domain.Commands;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
+using TestMusicAppServer.Track.Domain.Storages;
 
 namespace TestMusicAppServer.Track.Domain.CommandHandlers
 {
     public class UploadFileCommandHandler : BaseCommandHandler<UploadFileCommand>
     {
         private readonly IMediator _mediator;
-        private readonly IUploadTrackMessageBroker _uploadTrackMessageBroker;
+        private readonly IAudioUploadingMessageBroker _audioUploadingMessageBroker;
+        private readonly IAudioStorage _audioStorage;
 
         public UploadFileCommandHandler(
             IMediator mediator,
-            IUploadTrackMessageBroker uploadTrackMessageBroker
+            IAudioUploadingMessageBroker audioUploadingMessageBroker,
+            IAudioStorage audioStorage
         )
         {
             this._mediator = mediator;
-            this._uploadTrackMessageBroker = uploadTrackMessageBroker;
+            this._audioUploadingMessageBroker = audioUploadingMessageBroker;
+            this._audioStorage = audioStorage;
         }
 
         protected override async Task Handle(UploadFileCommand request, CancellationToken cancellationToken)
@@ -37,15 +42,22 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
             {
                 throw new ValidationException(result.InvalidityReason);
             }
+            
+            var fileName = $"{request.UserId}__{Guid.NewGuid()}";
+            await _audioStorage.UploadUnprocessedAudioFileAsync(fileName, request.File);
 
             try
             {
-                await _uploadTrackMessageBroker.SendFileConversionRequest();
+                await _audioUploadingMessageBroker.SendFileConversionRequest(fileName,
+                    request.PlaylistId,
+                    request.Name);
             }
             catch
             {
                 // TODO Logging
-                // TODO Remove uploaded file
+
+                await _audioStorage.DeleteUnprocessedAudioFileAsync(fileName);
+
                 throw;
             }
         }

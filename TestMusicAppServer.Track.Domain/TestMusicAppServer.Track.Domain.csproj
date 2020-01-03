@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TestMusicAppServer.Common\TestMusicAppServer.Common.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Playlist.Definitions\TestMusicAppServer.Playlist.Definitions.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Shared.Domain\TestMusicAppServer.Shared.Domain.csproj" />
   </ItemGroup>
