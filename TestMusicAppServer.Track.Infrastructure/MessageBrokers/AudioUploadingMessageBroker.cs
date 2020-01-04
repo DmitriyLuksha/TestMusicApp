@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Shared.Infrastructure.ServiceBusMessageGenerators;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
+using TestMusicAppServer.Track.Domain.Messages;
 
 namespace TestMusicAppServer.Track.Infrastructure.MessageBrokers
 {
@@ -14,11 +15,7 @@ namespace TestMusicAppServer.Track.Infrastructure.MessageBrokers
     {
         private readonly ConnectionStringsConfig _connectionStringsConfig;
         private readonly ServiceBusConfig _serviceBusConfig;
-
-        private const string FileConversionFileNamePropertyKey = "fileName";
-        private const string FileConversionPlaylistIdPropertyKey = "playlistId";
-        private const string FileConversionTrackNamePropertyKey = "trackName";
-
+        
         public AudioUploadingMessageBroker(
             IOptions<ConnectionStringsConfig> connectionStringsConfig,
             IOptions<ServiceBusConfig> serviceBusConfig
@@ -28,19 +25,12 @@ namespace TestMusicAppServer.Track.Infrastructure.MessageBrokers
             this._serviceBusConfig = serviceBusConfig.Value;
         }
 
-        public async Task SendFileConversionRequest(string fileName, Guid playlistId, string trackName)
+        public async Task SendAudioConversionRequest(AudioConversionMessage audioConversionMessage)
         {
             var connectionString = _connectionStringsConfig.TestMusicAppServiceBus;
             var queueName = _serviceBusConfig.AudioConversionQueueName;
-
-            var messageDictionary = new Dictionary<string, string>
-            {
-                { FileConversionFileNamePropertyKey, fileName },
-                { FileConversionPlaylistIdPropertyKey, playlistId.ToString() },
-                { FileConversionTrackNamePropertyKey, trackName }
-            };
-
-            var messageJson = JsonConvert.SerializeObject(messageDictionary);
+            
+            var messageJson = JsonConvert.SerializeObject(audioConversionMessage);
             var queueClient = new QueueClient(connectionString, queueName);
             var message = ServiceBusMessageGenerator.GenerateMessage(messageJson);
 

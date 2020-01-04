@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TestMusicAppServer.Track.Domain.Messages;
 
 namespace TestMusicAppServer.Track.Domain.MessageBrokers
 {
     public interface IAudioUploadingMessageBroker
     {
-        Task SendFileConversionRequest(string fileName, Guid playlistId, string trackName);
+        Task SendAudioConversionRequest(AudioConversionMessage audioConversionMessage);
     }
 }

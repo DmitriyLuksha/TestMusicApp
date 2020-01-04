@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using TestMusicAppServer.Api.CloseableListenersHandlers;
 using TestMusicAppServer.Api.DependencyResolvers;
 using TestMusicAppServer.Api.Extensions;
 using TestMusicAppServer.Api.Handlers;
@@ -90,8 +91,17 @@ namespace TestMusicAppServer.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            IApplicationLifetime applicationLifetime
+        )
         {
+            applicationLifetime.ApplicationStarted.Register(OnApplicationStarted);
+            applicationLifetime.ApplicationStopping.Register(OnApplicationStopping);
+
+            CloseableListenersHandler.ResolveListeners(app.ApplicationServices);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -116,6 +126,16 @@ namespace TestMusicAppServer.Api
                     name: "default",
                     template: "{controller}/{action}");
             });
+        }
+        
+        private void OnApplicationStarted()
+        {
+            CloseableListenersHandler.RegisterListeners();
+        }
+
+        private void OnApplicationStopping()
+        {
+            CloseableListenersHandler.CloseListeners();
         }
     }
 }

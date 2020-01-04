@@ -7,6 +7,7 @@ using TestMusicAppServer.Playlist.Definitions.ValidationRequests;
 using TestMusicAppServer.Shared.Domain.CommandHandlers;
 using TestMusicAppServer.Track.Domain.Commands;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
+using TestMusicAppServer.Track.Domain.Messages;
 using TestMusicAppServer.Track.Domain.Storages;
 
 namespace TestMusicAppServer.Track.Domain.CommandHandlers
@@ -46,11 +47,19 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
             var fileName = $"{request.UserId}__{Guid.NewGuid()}";
             await _audioStorage.UploadUnprocessedAudioFileAsync(fileName, request.File);
 
+            var audioConversionMessage = new AudioConversionMessage
+            {
+                FileName = fileName,
+                AudioConversionMessageAdditionalData = new AudioConversionMessageAdditionalData
+                {
+                    PlaylistId = request.PlaylistId,
+                    TrackName = request.Name
+                }
+            };
+
             try
             {
-                await _audioUploadingMessageBroker.SendFileConversionRequest(fileName,
-                    request.PlaylistId,
-                    request.Name);
+                await _audioUploadingMessageBroker.SendAudioConversionRequest(audioConversionMessage);
             }
             catch
             {

@@ -3,6 +3,10 @@ Add environment variable ConnectionStrings__TestMusicAppDb
 Add environment variable ConnectionStrings__TestMusicAppServiceBus
 Add environment variable ConnectionStrings__TestMusicAppStorage
 Add environment variable ServiceBus__AudioConversionQueueName
+Add environment variable ServiceBus__AudioUploadingResultQueueName
+Add environment variable Storage__AudioFilesContainerName
 Add environment variable Storage__UnprocessedAudioFilesContainerName
+
+[Environment]::SetEnvironmentVariable("*variable name*", "*value*", "User")
 
 TODO create deploy script
