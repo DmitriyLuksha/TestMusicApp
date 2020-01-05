@@ -50,7 +50,7 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
             var audioConversionMessage = new AudioConversionMessage
             {
                 FileName = fileName,
-                AudioConversionMessageAdditionalData = new AudioConversionMessageAdditionalData
+                AdditionalData = new AudioConversionMessageAdditionalData
                 {
                     PlaylistId = request.PlaylistId,
                     TrackName = request.Name
