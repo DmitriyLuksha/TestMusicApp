@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TestMusicAppServer.Authentication.Services;
 using TestMusicAppServer.Playlist.Domain.Commands;
@@ -39,7 +40,14 @@ namespace TestMusicAppServer.Api.Controllers
             };
 
             var playlists = await _mediator.Send(query);
-            return Ok(playlists);
+
+            var playlistsCleaned = playlists.Select(pl => new
+            {
+                pl.Id,
+                pl.Name
+            });
+
+            return Ok(playlistsCleaned);
         }
     }
 }

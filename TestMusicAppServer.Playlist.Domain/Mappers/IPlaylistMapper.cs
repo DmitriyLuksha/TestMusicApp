@@ -6,6 +6,6 @@ namespace TestMusicAppServer.Playlist.Domain.Mappers
 {
     public interface IPlaylistMapper : IMapperRoot
     {
-        IEnumerable<PlaylistDto> MapToPlaylistDtoEnumerable(IEnumerable<Entities.Playlist> playlist);
+        IEnumerable<PlaylistDto> MapToPlaylistDtoEnumerable(IEnumerable<Entities.Playlist> playlists);
     }
 }

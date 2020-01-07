@@ -18,9 +18,9 @@ namespace TestMusicAppServer.Playlist.Domain.Mappers
             Mapper = config.CreateMapper();
         }
 
-        public IEnumerable<PlaylistDto> MapToPlaylistDtoEnumerable(IEnumerable<Entities.Playlist> playlist)
+        public IEnumerable<PlaylistDto> MapToPlaylistDtoEnumerable(IEnumerable<Entities.Playlist> playlists)
         {
-            var playlistDtos = Mapper.Map<IEnumerable<PlaylistDto>>(playlist);
+            var playlistDtos = Mapper.Map<IEnumerable<PlaylistDto>>(playlists);
             return playlistDtos;
         }
     }

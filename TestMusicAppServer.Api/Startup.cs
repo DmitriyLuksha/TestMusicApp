@@ -15,6 +15,7 @@ using TestMusicAppServer.Authentication;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Playlist.Domain;
 using TestMusicAppServer.Playlist.Infrastructure;
+using TestMusicAppServer.Track.Domain;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
 using TestMusicAppServer.Track.Infrastructure;
 using TestMusicAppServer.Track.Infrastructure.Listeners;
@@ -58,6 +59,7 @@ namespace TestMusicAppServer.Api
             services.ConfigurePlaylistInfrastructureServices(Configuration);
             services.ConfigurePlaylistDomainServices(Configuration);
             services.ConfigureTrackInfrastructureServices(Configuration);
+            services.ConfigureTrackDomainServices();
 
             services.AddMediatRForSolution("TestMusicAppServer.");
 

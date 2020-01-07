@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TestMusicAppServer.Authentication.Services;
 using TestMusicAppServer.Track.Domain.Commands;
+using TestMusicAppServer.Track.Domain.Queries;
 
 namespace TestMusicAppServer.Api.Controllers
 {
@@ -31,6 +33,22 @@ namespace TestMusicAppServer.Api.Controllers
 
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("getForPlaylist")]
+        public async Task<IActionResult> GetTracksForPlaylist([FromQuery] GetTracksByPlaylistQuery query)
+        {
+            var tracks = await _mediator.Send(query);
+
+            var trackCleaned = tracks.Select(t => new
+            {
+                t.Id,
+                t.PlaylistId,
+                t.TrackName
+            });
+
+            return Ok(trackCleaned);
         }
     }
 }
