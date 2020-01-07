@@ -24,6 +24,7 @@ namespace TestMusicAppServer.Api.Controllers
 
         [HttpPost]
         [Route("uploadFile")]
+        [RequestSizeLimit(30 * 1024 * 1024)]
         public async Task<IActionResult> UploadFile([FromForm] UploadFileCommand command)
         {
             command.UserId = _accountService.UserId;
