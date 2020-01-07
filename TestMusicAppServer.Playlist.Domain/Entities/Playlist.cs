@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TestMusicAppServer.Shared.Domain.Entities;
 
 namespace TestMusicAppServer.Playlist.Domain.Entities

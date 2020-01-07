@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,9 @@ using TestMusicAppServer.Authentication;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Playlist.Domain;
 using TestMusicAppServer.Playlist.Infrastructure;
+using TestMusicAppServer.Track.Domain.MessageBrokers;
 using TestMusicAppServer.Track.Infrastructure;
+using TestMusicAppServer.Track.Infrastructure.Listeners;
 using TestMusicAppServer.User.Infrastructure;
 
 namespace TestMusicAppServer.Api
@@ -45,8 +48,6 @@ namespace TestMusicAppServer.Api
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMediatRForSolution("TestMusicAppServer.");
-
             services.Configure<ConnectionStringsConfig>(Configuration.GetSection("ConnectionStrings"));
             services.Configure<ServiceBusConfig>(Configuration.GetSection("ServiceBus"));
             services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
@@ -56,7 +57,9 @@ namespace TestMusicAppServer.Api
             services.ConfigureUserInfrastructureServices(Configuration);
             services.ConfigurePlaylistInfrastructureServices(Configuration);
             services.ConfigurePlaylistDomainServices(Configuration);
-            services.ConfigureTrackInfrastructureServices();
+            services.ConfigureTrackInfrastructureServices(Configuration);
+
+            services.AddMediatRForSolution("TestMusicAppServer.");
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

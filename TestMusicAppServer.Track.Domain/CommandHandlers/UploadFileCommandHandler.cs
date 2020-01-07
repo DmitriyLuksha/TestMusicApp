@@ -29,12 +29,12 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
             this._audioStorage = audioStorage;
         }
 
-        protected override async Task Handle(UploadFileCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(UploadFileCommand command, CancellationToken cancellationToken)
         {
             var validationRequest = new PlaylistAccessibilityValidationRequest()
             {
-                PlaylistId = request.PlaylistId,
-                UserId = request.UserId
+                PlaylistId = command.PlaylistId,
+                UserId = command.UserId
             };
 
             var result = await _mediator.Send(validationRequest, cancellationToken);
@@ -44,16 +44,16 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
                 throw new ValidationException(result.InvalidityReason);
             }
             
-            var fileName = $"{request.UserId}__{Guid.NewGuid()}";
-            await _audioStorage.UploadUnprocessedAudioFileAsync(fileName, request.File);
+            var fileName = $"{command.UserId}__{Guid.NewGuid()}";
+            await _audioStorage.UploadUnprocessedAudioFileAsync(fileName, command.File);
 
             var audioConversionMessage = new AudioConversionMessage
             {
                 FileName = fileName,
-                AdditionalData = new AudioConversionMessageAdditionalData
+                AdditionalData = new AudioConversionAdditionalData
                 {
-                    PlaylistId = request.PlaylistId,
-                    TrackName = request.Name
+                    PlaylistId = command.PlaylistId,
+                    TrackName = command.Name
                 }
             };
 

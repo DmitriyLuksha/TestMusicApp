@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TestMusicAppServer.Authentication\TestMusicAppServer.Authentication.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Common\TestMusicAppServer.Common.csproj" />
+    <ProjectReference Include="..\TestMusicAppServer.Playlist.Definitions\TestMusicAppServer.Playlist.Definitions.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Playlist.Domain\TestMusicAppServer.Playlist.Domain.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Playlist.Infrastructure\TestMusicAppServer.Playlist.Infrastructure.csproj" />
     <ProjectReference Include="..\TestMusicAppServer.Resources\TestMusicAppServer.Resources.csproj" />

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TestMusicAppServer.Common.Configurations;
-using TestMusicAppServer.Shared.Infrastructure.ServiceBusMessageGenerators;
+using TestMusicAppServer.Shared.Infrastructure.ServiceBusMessageConverters;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
 using TestMusicAppServer.Track.Domain.Messages;
 
@@ -32,7 +32,7 @@ namespace TestMusicAppServer.Track.Infrastructure.MessageBrokers
             
             var messageJson = JsonConvert.SerializeObject(audioConversionMessage);
             var queueClient = new QueueClient(connectionString, queueName);
-            var message = ServiceBusMessageGenerator.GenerateMessage(messageJson);
+            var message = ServiceBusMessageConverter.StringToMessage(messageJson);
 
             await queueClient.SendAsync(message);
 
