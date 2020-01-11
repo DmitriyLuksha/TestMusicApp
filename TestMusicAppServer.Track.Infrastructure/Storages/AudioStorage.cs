@@ -42,6 +42,15 @@ namespace TestMusicAppServer.Track.Infrastructure.Storages
             await blob.DeleteIfExistsAsync();
         }
 
+        public async Task ReadAudioFileAsync(string fileName, Stream target)
+        {
+            var container = GetContainer(_storageConfig.AudioFilesContainerName);
+
+            var blob = container.GetBlockBlobReference(fileName);
+
+            await blob.DownloadToStreamAsync(target);
+        }
+
         private CloudBlobContainer GetContainer(string containerName)
         {
             var account = CloudStorageAccount.Parse(_connectionStringsConfig.TestMusicAppStorage);

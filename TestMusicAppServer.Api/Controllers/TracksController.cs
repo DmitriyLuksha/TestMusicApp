@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using TestMusicAppServer.Authentication.Services;
 using TestMusicAppServer.Track.Domain.Commands;
 using TestMusicAppServer.Track.Domain.Queries;
@@ -42,14 +42,29 @@ namespace TestMusicAppServer.Api.Controllers
         {
             var tracks = await _mediator.Send(query);
 
-            var trackCleaned = tracks.Select(t => new
+            var tracksCleaned = tracks.Select(t => new
             {
                 t.Id,
                 t.PlaylistId,
                 t.TrackName
             });
 
-            return Ok(trackCleaned);
+            return Ok(tracksCleaned);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetTrack(Guid id)
+        {
+            var query = new TrackFileQuery
+            {
+                TrackId = id
+            };
+
+            var trackFile = await _mediator.Send(query);
+            trackFile.Content.Position = 0;
+
+            return File(trackFile.Content, trackFile.ContentType);
         }
     }
 }

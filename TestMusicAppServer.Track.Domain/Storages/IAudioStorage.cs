@@ -8,5 +8,7 @@ namespace TestMusicAppServer.Track.Domain.Storages
         Task UploadUnprocessedAudioFileAsync(string fileName, Stream content);
 
         Task DeleteUnprocessedAudioFileAsync(string fileName);
+
+        Task ReadAudioFileAsync(string fileName, Stream target);
     }
 }
