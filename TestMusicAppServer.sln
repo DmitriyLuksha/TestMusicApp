@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Track.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Track.Infrastructure", "TestMusicAppServer.Track.Infrastructure\TestMusicAppServer.Track.Infrastructure.csproj", "{9F77C7D9-D9A7-4CC2-B109-993634EE4EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer.Playlist.Definitions", "TestMusicAppServer.Playlist.Definitions\TestMusicAppServer.Playlist.Definitions.csproj", "{F894595E-4079-44C5-A46F-B4DF148CF89B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMusicAppServer.Playlist.Definitions", "TestMusicAppServer.Playlist.Definitions\TestMusicAppServer.Playlist.Definitions.csproj", "{F894595E-4079-44C5-A46F-B4DF148CF89B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMusicAppServer.ClientNotifications", "TestMusicAppServer.ClientNotifications\TestMusicAppServer.ClientNotifications.csproj", "{D385A294-1E96-4F1B-8932-441BBB947E40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{F894595E-4079-44C5-A46F-B4DF148CF89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F894595E-4079-44C5-A46F-B4DF148CF89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F894595E-4079-44C5-A46F-B4DF148CF89B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D385A294-1E96-4F1B-8932-441BBB947E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D385A294-1E96-4F1B-8932-441BBB947E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D385A294-1E96-4F1B-8932-441BBB947E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D385A294-1E96-4F1B-8932-441BBB947E40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{F7183EFE-C9DE-4574-A52E-C6CA08C1BFF2} = {C60A4228-7FAC-424F-81E1-7C6C59D5D3DA}
 		{9F77C7D9-D9A7-4CC2-B109-993634EE4EBF} = {C60A4228-7FAC-424F-81E1-7C6C59D5D3DA}
 		{F894595E-4079-44C5-A46F-B4DF148CF89B} = {B0267DA1-797C-4918-B2C1-ED306D545010}
+		{D385A294-1E96-4F1B-8932-441BBB947E40} = {D51C02C8-3940-45A0-9752-ED967B626ABC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7144327-EFC5-494A-8BB7-080E9F5837C3}

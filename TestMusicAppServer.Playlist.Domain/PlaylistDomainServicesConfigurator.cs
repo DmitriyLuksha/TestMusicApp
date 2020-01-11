@@ -8,7 +8,7 @@ namespace TestMusicAppServer.Playlist.Domain
     {
         public static void ConfigurePlaylistDomainServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped(typeof(IPlaylistMapper), typeof(PlaylistMapper));
+            services.AddScoped<IPlaylistMapper, PlaylistMapper>();
         }
     }
 }

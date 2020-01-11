@@ -20,16 +20,13 @@ namespace TestMusicAppServer.Track.Infrastructure
             var connectionString = configuration.GetConnectionString(ConnectionStringKeys.TestMusicAppDb);
             services.AddDbContext<TrackContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddSingleton(typeof(IAudioConversionResultListener),
-                typeof(AudioConversionResultListener));
+            services.AddSingleton<IAudioConversionResultListener, AudioConversionResultListener>();
 
-            services.AddScoped(typeof(IAudioUploadingMessageBroker),
-                typeof(AudioUploadingMessageBroker));
+            services.AddScoped<IAudioUploadingMessageBroker, AudioUploadingMessageBroker>();
 
-            services.AddScoped(typeof(IRepository<Domain.Entities.Track>),
-                typeof(TrackRepository));
+            services.AddScoped<IRepository<Domain.Entities.Track>, TrackRepository>();
 
-            services.AddScoped(typeof(IAudioStorage), typeof(AudioStorage));
+            services.AddScoped<IAudioStorage, AudioStorage>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,13 +11,13 @@ using TestMusicAppServer.Api.DependencyResolvers;
 using TestMusicAppServer.Api.Extensions;
 using TestMusicAppServer.Api.Handlers;
 using TestMusicAppServer.Authentication;
+using TestMusicAppServer.ClientNotifications;
+using TestMusicAppServer.ClientNotifications.Hubs;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Playlist.Domain;
 using TestMusicAppServer.Playlist.Infrastructure;
 using TestMusicAppServer.Track.Domain;
-using TestMusicAppServer.Track.Domain.MessageBrokers;
 using TestMusicAppServer.Track.Infrastructure;
-using TestMusicAppServer.Track.Infrastructure.Listeners;
 using TestMusicAppServer.User.Infrastructure;
 
 namespace TestMusicAppServer.Api
@@ -60,6 +59,7 @@ namespace TestMusicAppServer.Api
             services.ConfigurePlaylistDomainServices(Configuration);
             services.ConfigureTrackInfrastructureServices(Configuration);
             services.ConfigureTrackDomainServices();
+            services.ConfigureClientNotificationsServices();
 
             services.AddMediatRForSolution("TestMusicAppServer.");
 
@@ -88,6 +88,11 @@ namespace TestMusicAppServer.Api
                     .AllowAnyHeader()
                     .AllowCredentials();
             }));
+
+            var signalRConnectionString = Configuration.GetConnectionString("TestMusicAppSignalR");
+
+            services.AddSignalR()
+                .AddAzureSignalR(signalRConnectionString);
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -130,6 +135,11 @@ namespace TestMusicAppServer.Api
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action}");
+            });
+            
+            app.UseAzureSignalR(routes =>
+            {
+                routes.MapHub<NotificationHub>("/notifications");
             });
         }
         

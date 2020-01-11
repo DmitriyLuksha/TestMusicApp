@@ -52,6 +52,7 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
                 FileName = fileName,
                 AdditionalData = new AudioConversionAdditionalData
                 {
+                    UserId = command.UserId,
                     PlaylistId = command.PlaylistId,
                     TrackName = command.Name
                 }

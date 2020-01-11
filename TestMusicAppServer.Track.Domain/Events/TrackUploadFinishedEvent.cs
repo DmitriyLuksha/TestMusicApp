@@ -5,6 +5,8 @@ namespace TestMusicAppServer.Track.Domain.Events
 {
     public class TrackUploadFinishedEvent : IEvent
     {
+        public Guid UserId { get; set; }
+
         public bool IsSuccess { get; set; }
 
         public string FileName { get; set; }

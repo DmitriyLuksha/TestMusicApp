@@ -15,8 +15,7 @@ namespace TestMusicAppServer.User.Infrastructure
             string connectionString = configuration.GetConnectionString(ConnectionStringKeys.TestMusicAppDb);
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddScoped(typeof(IRepository<Domain.Entities.User>),
-                typeof(UserRepository));
+            services.AddScoped<IRepository<Domain.Entities.User>, UserRepository>();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace TestMusicAppServer.Track.Domain
     {
         public static void ConfigureTrackDomainServices(this IServiceCollection services)
         {
-            services.AddScoped(typeof(ITrackMapper), typeof(TrackMapper));
+            services.AddScoped<ITrackMapper, TrackMapper>();
         }
     }
 }

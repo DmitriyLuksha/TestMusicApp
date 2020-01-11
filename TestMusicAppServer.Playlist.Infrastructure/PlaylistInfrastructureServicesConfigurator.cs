@@ -15,8 +15,7 @@ namespace TestMusicAppServer.Playlist.Infrastructure
             string connectionString = configuration.GetConnectionString(ConnectionStringKeys.TestMusicAppDb);
             services.AddDbContext<PlaylistContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddScoped(typeof(IRepository<Domain.Entities.Playlist>),
-                typeof(PlaylistRepository));
+            services.AddScoped<IRepository<Domain.Entities.Playlist>, PlaylistRepository>();
         }
     }
 }

@@ -76,6 +76,7 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
                     {
                         FileName = deserializedMessage.FileName,
                         IsSuccess = deserializedMessage.IsSuccess,
+                        UserId = deserializedMessage.AdditionalData.UserId,
                         PlaylistId = deserializedMessage.AdditionalData.PlaylistId,
                         TrackName = deserializedMessage.AdditionalData.TrackName
                     };

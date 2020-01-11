@@ -8,7 +8,7 @@ namespace TestMusicAppServer.Authentication
     {
         public static void ConfigureAuthenticationServices(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IAccountService), typeof(AccountService));
+            services.AddScoped<IAccountService, AccountService>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
