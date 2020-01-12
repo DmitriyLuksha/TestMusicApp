@@ -8,28 +8,24 @@ using TestMusicAppServer.Shared.Domain.CommandHandlers;
 using TestMusicAppServer.Track.Domain.Commands;
 using TestMusicAppServer.Track.Domain.MessageBrokers;
 using TestMusicAppServer.Track.Domain.Messages;
-using TestMusicAppServer.Track.Domain.Storages;
 
 namespace TestMusicAppServer.Track.Domain.CommandHandlers
 {
-    public class UploadFileCommandHandler : BaseCommandHandler<UploadFileCommand>
+    public class UploadYoutubeCommandHandler: BaseCommandHandler<UploadYoutubeCommand>
     {
         private readonly IMediator _mediator;
         private readonly IAudioUploadingMessageBroker _audioUploadingMessageBroker;
-        private readonly IAudioStorage _audioStorage;
 
-        public UploadFileCommandHandler(
+        public UploadYoutubeCommandHandler(
             IMediator mediator,
-            IAudioUploadingMessageBroker audioUploadingMessageBroker,
-            IAudioStorage audioStorage
+            IAudioUploadingMessageBroker audioUploadingMessageBroker
         )
         {
             this._mediator = mediator;
             this._audioUploadingMessageBroker = audioUploadingMessageBroker;
-            this._audioStorage = audioStorage;
         }
 
-        protected override async Task Handle(UploadFileCommand command, CancellationToken cancellationToken)
+        protected override async Task Handle(UploadYoutubeCommand command, CancellationToken cancellationToken)
         {
             var validationRequest = new PlaylistAccessibilityValidationRequest()
             {
@@ -44,12 +40,9 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
                 throw new ValidationException(result.InvalidityReason);
             }
             
-            var fileName = $"{command.UserId}__{Guid.NewGuid()}";
-            await _audioStorage.UploadUnprocessedAudioFileAsync(fileName, command.File);
-
-            var audioConversionMessage = new AudioConversionMessage
+            var youtubeConversionMessage = new YoutubeConversionMessage
             {
-                FileName = fileName,
+                VideoId = command.VideoId,
                 AdditionalData = new AudioUploadingAdditionalData
                 {
                     UserId = command.UserId,
@@ -60,14 +53,11 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
 
             try
             {
-                await _audioUploadingMessageBroker.SendAudioConversionRequest(audioConversionMessage);
+                await _audioUploadingMessageBroker.SendYoutubeConversionRequest(youtubeConversionMessage);
             }
             catch
             {
                 // TODO Logging
-
-                await _audioStorage.DeleteUnprocessedAudioFileAsync(fileName);
-
                 throw;
             }
         }

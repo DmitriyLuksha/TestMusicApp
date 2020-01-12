@@ -36,6 +36,15 @@ namespace TestMusicAppServer.Api.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("uploadYoutube")]
+        public async Task<IActionResult> UploadYoutube([FromBody] UploadYoutubeCommand command)
+        {
+            command.UserId = _accountService.UserId;
+            await _mediator.Send(command);
+            return Ok();
+        }
+
         [HttpGet]
         [Route("getForPlaylist")]
         public async Task<IActionResult> GetTracksForPlaylist([FromQuery] GetTracksByPlaylistQuery query)

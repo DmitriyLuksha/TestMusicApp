@@ -2,7 +2,7 @@
 
 namespace TestMusicAppServer.Track.Domain.Messages
 {
-    public class AudioConversionAdditionalData
+    public class AudioUploadingAdditionalData
     {
         public Guid UserId { get; set; }
 

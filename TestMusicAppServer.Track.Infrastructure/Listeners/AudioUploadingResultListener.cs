@@ -1,20 +1,19 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Shared.Infrastructure.ServiceBusMessageConverters;
-using TestMusicAppServer.Track.Domain.Commands;
 using TestMusicAppServer.Track.Domain.Events;
 using TestMusicAppServer.Track.Domain.Messages;
 
 namespace TestMusicAppServer.Track.Infrastructure.Listeners
 {
-    public class AudioConversionResultListener : IAudioConversionResultListener
+    public class AudioUploadingResultListener : IAudioUploadingResultListener
     {
         private readonly ServiceBusConfig _serviceBusConfig;
         private readonly ConnectionStringsConfig _connectionStringsConfig;
@@ -24,7 +23,7 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
 
         private IQueueClient _queueClient;
 
-        public AudioConversionResultListener(
+        public AudioUploadingResultListener(
             IOptions<ConnectionStringsConfig> connectionStringsConfig,
             IOptions<ServiceBusConfig> serviceBusConfig,
             IServiceScopeFactory scopeFactory
@@ -70,7 +69,7 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
                     var mediator = scope.ServiceProvider.GetService<IMediator>();
 
                     var messageJson = ServiceBusMessageConverter.MessageToString(message);
-                    var deserializedMessage = JsonConvert.DeserializeObject<AudioConversionResultMessage>(messageJson);
+                    var deserializedMessage = JsonConvert.DeserializeObject<AudioUploadingResultMessage>(messageJson);
                     
                     var trackUploadFinishedEvent = new TrackUploadFinishedEvent
                     {

@@ -4,6 +4,8 @@
     {
         public string AudioConversionQueueName { get; set; }
 
+        public string YoutubeConversionQueueName { get; set; }
+
         public string AudioUploadingResultQueueName { get; set; }
     }
 }

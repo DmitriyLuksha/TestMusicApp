@@ -6,6 +6,6 @@ namespace TestMusicAppServer.Track.Domain.Messages
     {
         public string FileName { get; set; }
 
-        public AudioConversionAdditionalData AdditionalData { get; set; }
+        public AudioUploadingAdditionalData AdditionalData { get; set; }
     }
 }

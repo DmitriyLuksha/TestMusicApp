@@ -7,5 +7,7 @@ namespace TestMusicAppServer.Track.Domain.MessageBrokers
     public interface IAudioUploadingMessageBroker
     {
         Task SendAudioConversionRequest(AudioConversionMessage audioConversionMessage);
+
+        Task SendYoutubeConversionRequest(YoutubeConversionMessage youtubeConversionMessage);
     }
 }

@@ -20,7 +20,7 @@ namespace TestMusicAppServer.Track.Infrastructure
             var connectionString = configuration.GetConnectionString(ConnectionStringKeys.TestMusicAppDb);
             services.AddDbContext<TrackContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddSingleton<IAudioConversionResultListener, AudioConversionResultListener>();
+            services.AddSingleton<IAudioUploadingResultListener, AudioUploadingResultListener>();
 
             services.AddScoped<IAudioUploadingMessageBroker, AudioUploadingMessageBroker>();
 

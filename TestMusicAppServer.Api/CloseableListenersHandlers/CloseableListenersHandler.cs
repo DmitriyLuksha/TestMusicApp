@@ -11,7 +11,7 @@ namespace TestMusicAppServer.Api.CloseableListenersHandlers
         {
             ListenerTypes = new List<Type>
             {
-                typeof(IAudioConversionResultListener)
+                typeof(IAudioUploadingResultListener)
             };
         }
 

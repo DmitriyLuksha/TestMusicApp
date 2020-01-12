@@ -1,12 +1,12 @@
 ﻿namespace TestMusicAppServer.Track.Domain.Messages
 {
-    public class AudioConversionResultMessage
+    public class AudioUploadingResultMessage
     {
         public bool IsSuccess { get; set; }
 
         public string FileName { get; set; }
 
-        public AudioConversionAdditionalData AdditionalData { get; set; }
+        public AudioUploadingAdditionalData AdditionalData { get; set; }
 
     }
 }
