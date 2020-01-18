@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TestMusicAppServer.Authentication.Services;
@@ -35,8 +34,6 @@ namespace TestMusicAppServer.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPlaylists()
         {
-            Trace.TraceInformation("Test message");
-
             var query = new GetPlaylistsForUserQuery
             {
                 UserId = _accountService.UserId
