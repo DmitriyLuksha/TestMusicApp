@@ -63,6 +63,8 @@ namespace TestMusicAppServer.Api
 
             services.AddMediatRForSolution("TestMusicAppServer.");
 
+            services.AddApplicationInsightsTelemetry();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
