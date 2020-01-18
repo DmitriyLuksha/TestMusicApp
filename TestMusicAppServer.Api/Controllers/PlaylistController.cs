@@ -37,7 +37,7 @@ namespace TestMusicAppServer.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPlaylists()
         {
-            this._logger.Log(LogLevel.Information, "it works", new GetPlaylistsForUserQuery
+            this._logger.Log(LogLevel.Error, "it works", new GetPlaylistsForUserQuery
             {
                 UserId = _accountService.UserId
             });
