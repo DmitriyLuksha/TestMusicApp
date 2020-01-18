@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using TestMusicAppServer.Authentication.Services;
 using TestMusicAppServer.Playlist.Domain.Commands;
 using TestMusicAppServer.Playlist.Domain.Queries;
@@ -14,11 +15,13 @@ namespace TestMusicAppServer.Api.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IAccountService _accountService;
+        private readonly ILogger _logger;
 
-        public PlaylistController(IMediator mediator, IAccountService accountService)
+        public PlaylistController(IMediator mediator, IAccountService accountService, ILogger<PlaylistController> logger)
         {
             this._mediator = mediator;
             this._accountService = accountService;
+            this._logger = logger;
         }
 
         [HttpPost]
@@ -34,6 +37,11 @@ namespace TestMusicAppServer.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPlaylists()
         {
+            this._logger.Log(LogLevel.Information, "it works", new GetPlaylistsForUserQuery
+            {
+                UserId = _accountService.UserId
+            });
+
             var query = new GetPlaylistsForUserQuery
             {
                 UserId = _accountService.UserId
