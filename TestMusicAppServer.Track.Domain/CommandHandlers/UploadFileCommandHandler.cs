@@ -57,19 +57,8 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
                     TrackName = command.Name
                 }
             };
-
-            try
-            {
-                await _audioUploadingMessageBroker.SendAudioConversionRequest(audioConversionMessage);
-            }
-            catch
-            {
-                // TODO Logging
-
-                await _audioStorage.DeleteUnprocessedAudioFileAsync(fileName);
-
-                throw;
-            }
+            
+            await _audioUploadingMessageBroker.SendAudioConversionRequest(audioConversionMessage);
         }
     }
 }

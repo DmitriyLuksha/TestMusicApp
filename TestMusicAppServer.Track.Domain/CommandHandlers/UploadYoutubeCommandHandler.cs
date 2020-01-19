@@ -50,16 +50,8 @@ namespace TestMusicAppServer.Track.Domain.CommandHandlers
                     TrackName = command.Name
                 }
             };
-
-            try
-            {
-                await _audioUploadingMessageBroker.SendYoutubeConversionRequest(youtubeConversionMessage);
-            }
-            catch
-            {
-                // TODO Logging
-                throw;
-            }
+            
+            await _audioUploadingMessageBroker.SendYoutubeConversionRequest(youtubeConversionMessage);
         }
     }
 }

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using TestMusicAppServer.Common.Configurations;
 using TestMusicAppServer.Shared.Infrastructure.ServiceBusMessageConverters;
 using TestMusicAppServer.Track.Domain.Events;
@@ -18,6 +19,7 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
         private readonly ServiceBusConfig _serviceBusConfig;
         private readonly ConnectionStringsConfig _connectionStringsConfig;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly ILogger _logger;
 
         private const string DeadLetterExceptionReason = "Can't process request due to exception";
 
@@ -26,12 +28,14 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
         public AudioUploadingResultListener(
             IOptions<ConnectionStringsConfig> connectionStringsConfig,
             IOptions<ServiceBusConfig> serviceBusConfig,
-            IServiceScopeFactory scopeFactory
+            IServiceScopeFactory scopeFactory,
+            ILogger<AudioUploadingResultListener> logger
         )
         {
             this._connectionStringsConfig = connectionStringsConfig.Value;
             this._serviceBusConfig = serviceBusConfig.Value;
             this._scopeFactory = scopeFactory;
+            this._logger = logger;
         }
 
         public void RegisterListener()
@@ -84,7 +88,7 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
                 }
                 catch (Exception ex)
                 {
-                    // TODO Logging
+                    _logger.LogError(ex, "Upload track");
 
                     var exceptionJson = JsonConvert.SerializeObject(ex);
 
@@ -102,7 +106,8 @@ namespace TestMusicAppServer.Track.Infrastructure.Listeners
 
         private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs args)
         {
-            // TODO
+            _logger.LogError(args.Exception, "ExceptionReceivedHandler triggered");
+
             return Task.CompletedTask;
         }
     }

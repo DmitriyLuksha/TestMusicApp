@@ -25,22 +25,15 @@ namespace TestMusicAppServer.Track.Domain.EventHandlers
 
         public override async Task Handle(TrackUploadFinishedEvent @event, CancellationToken cancellationToken)
         {
-            if (@event.IsSuccess)
+            var command = new AddTrackCommand
             {
-                var command = new AddTrackCommand
-                {
-                    TrackId = Guid.NewGuid(),
-                    FileName = @event.FileName,
-                    PlaylistId = @event.PlaylistId,
-                    TrackName = @event.TrackName
-                };
-                
-                await _mediator.Send(command, cancellationToken);
-            }
-            else
-            {
-                // TODO Logging
-            }
+                TrackId = Guid.NewGuid(),
+                FileName = @event.FileName,
+                PlaylistId = @event.PlaylistId,
+                TrackName = @event.TrackName
+            };
+            
+            await _mediator.Send(command, cancellationToken);
 
             var notificationMessage = new TrackUploadFinishedNotificationMessage
             {
