@@ -51,6 +51,7 @@ namespace TestMusicAppServer.Api
             services.Configure<ConnectionStringsConfig>(Configuration.GetSection("ConnectionStrings"));
             services.Configure<ServiceBusConfig>(Configuration.GetSection("ServiceBus"));
             services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
+            services.Configure<ApplicationInsightsConfig>(Configuration.GetSection("ApplicationInsights"));
 
             // TODO Implement autoresolving dependencies for the base classes and interfaces like IService
             services.ConfigureAuthenticationServices();
