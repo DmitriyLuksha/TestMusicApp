@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using TestMusicAppServer.Common.Configurations;
 
@@ -14,6 +15,7 @@ namespace TestMusicAppServer.Api.Controllers
             this._applicationInsightsConfig = applicationInsightsConfig.Value;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("applicationInsightInstrumentationKey")]
         public IActionResult GetApplicationInsightInstrumentationKey()
