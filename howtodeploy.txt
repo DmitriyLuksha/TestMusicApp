@@ -1,15 +1,3 @@
-Set applicationUrl to https://localhost:44349/
-Add environment variable ConnectionStrings__TestMusicAppDb
-Add environment variable ConnectionStrings__TestMusicAppServiceBus
-Add environment variable ConnectionStrings__TestMusicAppStorage
-Add environment variable ConnectionStrings__TestMusicAppSignalR
-Add environment variable ApplicationInsights__InstrumentationKey if you need telemetry
-Add environment variable ServiceBus__AudioConversionQueueName
-Add environment variable ServiceBus__YoutubeConversionQueueName
-Add environment variable ServiceBus__AudioUploadingResultQueueName
-Add environment variable Storage__AudioFilesContainerName
-Add environment variable Storage__UnprocessedAudioFilesContainerName
-
-[Environment]::SetEnvironmentVariable("*variable name*", "*value*", "User")
-
-TODO create deploy script
+1) Run script Scripts/Set-EnvironmentVariables.ps1 as admin and provide variable values
+2) Publish Api project into any folder with Debug configuration
+3) Run script Add-TestMusicAppServerToIIS.ps1 as admin and provide path where Api project was published

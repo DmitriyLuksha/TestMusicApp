@@ -30,8 +30,7 @@ namespace TestMusicAppServer.Api
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                // TODO: Add prefixes
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables("TestMusicApp_");
 
             Configuration = builder.Build();
         }
