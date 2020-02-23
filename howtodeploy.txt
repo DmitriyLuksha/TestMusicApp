@@ -1,7 +1,0 @@
-1) Run script Scripts/Set-EnvironmentVariables.ps1 as admin and provide variable values
-2) Publish Api project into any folder with Debug configuration
-3) Run script Add-TestMusicAppServerToIIS.ps1 as admin and provide path where Api project was published
-4) Install the Azure PowerShell module
-5) Run script Copy-SampleTracks.ps1 to copy sample tracks to your container
-6) Make sure that you have the latest version of the database deployed
-7) Run script Set-TestSQLData.ps1 if you need test data. This script will clean up existing data
