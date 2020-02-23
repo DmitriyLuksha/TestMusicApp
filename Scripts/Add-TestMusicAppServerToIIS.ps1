@@ -13,7 +13,7 @@
 
 [CmdletBinding()]
 Param (
-    [Parameter(Mandatory=$True)]
+    [Parameter(Mandatory=$False)]
     [string]$WebSitePath,
 
     [Parameter(Mandatory=$False)]
@@ -30,6 +30,10 @@ $ErrorActionPreference = "Stop";
 
 Import-Module WebAdministration
 
+if (!$WebSitePath) {
+    $WebSitePath = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\TestMusicAppServer.Api");
+}
+
 If (!$WebSiteName) {
     $WebSiteName = "TestMusicApp";
 }
@@ -44,19 +48,19 @@ If (!$AppPoolName) {
 
 If (Test-Path "IIS:\Sites\$WebSiteName"){
     Write-Host "The IIS web site $WebSiteName already exists";
-    exit;
+    Exit;
 }
 
 If (Test-Path("IIS:\AppPools\" + $AppPoolName)) {
     Write-Host "The App Pool $AppPoolName already exists";
 }
 Else {
+    Write-Host "Creating App Pool $AppPoolName";
     New-WebAppPool -Name $AppPoolName | Set-ItemProperty -Name "managedRuntimeVersion" -Value "";
-    Write-Host "Created App Pool $AppPoolName";
 }
 
-New-Website -Name $WebSiteName -PhysicalPath $WebSitePath -ApplicationPool $AppPoolName -HostHeader $HostName;
-Write-Host "Created Site $WebSiteName";
+Write-Host "Creating Site $WebSiteName";
+New-Website -Name $WebSiteName -PhysicalPath $WebSitePath -ApplicationPool $AppPoolName -HostHeader $HostName | Out-Null;
 
 $HostsPath = "$Env:WinDir\System32\drivers\etc\hosts";
 $HostsContent = Get-Content $HostsPath;
@@ -65,6 +69,6 @@ If ($HostsContent -Match "127\.0\.0\.1\s+$HostName") {
     Write-Host "$HostName already in hosts file";
 }
 Else {
+    Write-Host "Adding $HostName to the hosts file";
     Add-Content -Path $HostsPath -Value "127.0.0.1`t$HostName";
-    Write-Host "Added $HostName to hosts file";
 }
