@@ -14,13 +14,13 @@
 [CmdletBinding()]
 Param (
     [Parameter(Mandatory=$False)]
-    [string]$WebSitePath,
+    [string]$WebSitePath = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\TestMusicAppServer.Api"),
 
     [Parameter(Mandatory=$False)]
-    [string]$WebSiteName,
+    [string]$WebSiteName = "TestMusicApp",
 
     [Parameter(Mandatory=$False)]
-    [string]$HostName,
+    [string]$HostName = "testmusicapp.local",
 
     [Parameter(Mandatory=$False)]
     [string]$AppPoolName
@@ -29,18 +29,6 @@ Param (
 $ErrorActionPreference = "Stop";
 
 Import-Module WebAdministration
-
-if (!$WebSitePath) {
-    $WebSitePath = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\TestMusicAppServer.Api");
-}
-
-If (!$WebSiteName) {
-    $WebSiteName = "TestMusicApp";
-}
-
-If (!$HostName) {
-    $HostName = "testmusicapp.local";
-}
 
 If (!$AppPoolName) {
     $AppPoolName = $WebSiteName;
