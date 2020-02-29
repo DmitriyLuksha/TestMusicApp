@@ -14,9 +14,6 @@
 [CmdletBinding()]
 Param (
     [Parameter(Mandatory=$False)]
-    [string]$WebSitePath = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\TestMusicAppServer.Api"),
-
-    [Parameter(Mandatory=$False)]
     [string]$WebSiteName = "TestMusicApp",
 
     [Parameter(Mandatory=$False)]
@@ -33,6 +30,10 @@ Import-Module WebAdministration
 If (!$AppPoolName) {
     $AppPoolName = $WebSiteName;
 }
+
+$WebSitePath = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\..\PublishedServer");
+
+New-Item -ItemType Directory -Path $WebSitePath -Force | Out-Null;
 
 If (Test-Path "IIS:\Sites\$WebSiteName"){
     Write-Host "The IIS web site $WebSiteName already exists";
